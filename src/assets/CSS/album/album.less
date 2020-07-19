@@ -1,0 +1,112 @@
+.main {
+    width: 100%;
+
+    .headerImg {
+        width: 100%;
+
+        img {
+            display: block;
+            width  : 100%;
+            height : 100%;
+        }
+    }
+
+    .highLight {
+        background-color: rgb(226, 88, 8);
+    }
+
+    #container {
+
+        margin  : 2% auto;
+        position: relative;
+
+        .searAndAdd{
+            width: 100%;
+            margin-bottom: 2%;
+            >.el-row{
+                .el-col:nth-of-type(2){
+                    display: flex;
+                    justify-content: flex-end;
+                }
+            }
+        }
+        
+
+        .title {
+            .el-col {
+                .el-tag {
+                    width          : 100%;
+                    height         : 100%;
+                    display        : flex;
+                    justify-content: center;
+                    cursor         : pointer;
+                    margin         : 1% 0;
+                    color          : black;
+                    font-size      : 18px;
+                }
+            }
+        }
+
+        .content {
+            .el-col {
+                .innerContent {
+                    padding      : 0 0 1% 0;
+                    border-bottom: 1px dashed #ccc;
+                    margin-bottom: 1%;
+
+                    h2 {
+                        cursor: pointer;
+
+                        &:hover {
+                            color: red;
+                        }
+                    }
+
+                    >div {
+                        display        : flex;
+                        justify-content: space-between;
+
+                        span:nth-child(1) {
+                            font-size: 18px;
+                            color    : #acadab;
+                        }
+
+                        span:nth-child(2) {
+                            font-size: 18px;
+                            color    : #acadab;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    #container {
+        width: 1200px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    #container {
+        width: 930px;
+    }
+}
+
+@media screen and (max-width: 930px) {
+    #container {
+        width: 767px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #container {
+        width: 90%;
+
+        // .search {
+        //     width        : 70% !important;
+        // }
+    }
+}

@@ -1,0 +1,35 @@
+.home_container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background-repeat:no-repeat;
+    background-size: 1920px 100%;
+  }
+  .Box{
+      display: flex;
+      margin:  0 auto;
+      width: 80%;
+      height: 15%;
+      position: relative;
+      justify-content: space-between;
+      >div{
+          width: 30%;
+          height: 100%;
+          border-radius: 10px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: #ccc;
+          font-size: 30px;
+          box-shadow: 0 10px 10px rgba(0, 0, 0, .12);
+          &:hover {
+            transform: translateY(-10px);
+            transition: all 0.3s;
+            cursor: pointer;
+            background-color: rgb(0, 128, 117);
+          }
+          >span{
+                font-size: 32px;
+          }
+      }
+  }

@@ -1,0 +1,71 @@
+import Vue from 'vue'
+import {
+  Button,
+  Breadcrumb,
+  BreadcrumbItem,
+  Header,
+  Main,
+  Container,
+  Tabs,
+  TabPane,
+  Card,
+  Aside,
+  Dialog,
+  Row,
+  Col,
+  Pagination,
+  Message,
+  Input,
+  Form,
+  FormItem,
+  MessageBox,
+  Menu,
+  MenuItem,
+  Submenu,
+  Radio,
+  RadioGroup,
+  RadioButton,
+  DatePicker,
+  MenuItemGroup,
+  Timeline,
+  TimelineItem,
+  Collapse,
+  CollapseItem,
+  Link,
+  Tag,
+  Upload
+} from 'element-ui'
+Vue.prototype.$message = Message
+Vue.prototype.$prompt = MessageBox.prompt
+Vue.use(Upload)
+Vue.use(Tag)
+Vue.use(Link)
+Vue.use(CollapseItem)
+Vue.use(Collapse)
+Vue.use(TimelineItem)
+Vue.use(Timeline)
+Vue.use(DatePicker)
+Vue.use(RadioButton)
+Vue.use(Radio)
+Vue.use(RadioGroup)
+Vue.use(Submenu)
+Vue.use(MenuItemGroup)
+Vue.use(MenuItem)
+Vue.use(Menu)
+Vue.use(FormItem)
+Vue.use(Form)
+Vue.use(Input)
+Vue.use(Pagination)
+Vue.use(Col)
+Vue.use(Row)
+Vue.use(Dialog)
+Vue.use(Aside)
+Vue.use(Card)
+Vue.use(Main)
+Vue.use(TabPane)
+Vue.use(Tabs)
+Vue.use(Container)
+Vue.use(Header)
+Vue.use(Breadcrumb)
+Vue.use(BreadcrumbItem)
+Vue.use(Button)

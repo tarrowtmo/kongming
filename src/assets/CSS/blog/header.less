@@ -1,0 +1,173 @@
+.container{
+    width: 100%;
+    min-width: 350px;
+    position: relative;
+    .container::after{
+        display: block;
+        content: '';
+        clear: both;
+    }
+    /*----------回到顶部-----------*/
+    .backTop{
+        position: fixed;
+        overflow: hidden;
+        cursor: pointer;
+        right: 5%;
+        height: 0;
+        top: 90%;
+        transition: all 0.5s;
+    }
+    .appear{
+        height: 53px;
+        position: fixed;
+        overflow: hidden;
+        cursor: pointer;
+        right: 5%;
+        top: 90%;
+        transition: all 0.5s;
+    }
+    /*----------回到顶部-----------*/
+    .el-row{
+        height: 110px;
+    }
+    .el-col{
+        height: 100%;
+    }
+    .el-col:nth-child(1){
+        width: 110px;
+        height: 100%;
+        position: relative;
+        border-radius: 50%;
+        img{
+            width: 100%;
+            height: 100%;
+            display: block;
+            border-radius: 50%;
+            position:absolute;
+            top:0px;
+            left:0px;
+            transition:transform 0.5s;
+            backface-visibility:hidden;
+        }
+        #back2{
+            transform:rotateX(180deg)
+        }
+    }
+    .el-col:nth-child(1):hover #back1{
+        transform:rotateX(180deg);
+    }
+    .el-col:nth-child(1):hover #back2{
+        transform:rotateX(360deg);
+    }
+    .el-col:nth-child(2){
+        height: 100%;
+        ul{
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            list-style: none;
+            display: flex;
+            .highlight{
+                color: #ff7f21;
+            }
+            li{
+                cursor: pointer;
+                flex: 1;
+                text-align: center;
+                line-height: 110px;
+            }
+        }
+    }
+    .el-col:nth-of-type(3){
+        width: 230px;
+        height: 100%;
+        margin-right: 2%;
+        div{
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            line-height: 110px;
+        }
+    }
+}
+
+@media all and (min-width: 1200px) {
+    .el-col:nth-of-type(1){
+        margin: 0 160px 0 20px;
+    }
+    .el-col:nth-of-type(2){
+        width: 570px;
+    }
+}
+@media all and (max-width: 1200px) {
+    .el-col:nth-child(1){
+        margin: 0 10px 0 10px;
+    }
+    .el-col:nth-child(2){
+        width: 350px;
+    }
+}
+@media all and (max-width: 930px) {
+}
+@media all and (max-width: 767px) {
+    .el-col:nth-of-type(1){
+        width: 80px !important;
+        height: 100% !important;
+        display: flex;
+        position: absolute;
+        top: 10%;
+        align-items: center;
+        img {
+            height: 80px !important;
+        }
+    }
+    .el-col:nth-of-type(3){
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        img{
+            display: block !important;
+        }
+    }
+    /*----------手机宽度型导航栏----------------*/
+    .container .ul2{
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        list-style: none;
+        background-color: orange;
+        margin: 0;
+        padding: 0;
+        li {
+            text-indent: 30px;
+            height: 60px;
+            color: white;
+            font-size: 18px;
+            line-height: 60px;
+            position: relative;
+            border-bottom: 3px solid orange;
+            opacity: 0.6;
+            &:hover {
+                opacity: 1;
+                background-color:rgba(136, 135, 135, 0.849);
+                transition: background-color 0.5s;
+            }
+        }
+        li::after{
+            display: block;
+            content: '';
+            clear: both;
+        }
+    }
+    /*----------手机宽度型导航栏----------------*/
+    /*---------------图片旋转--------------------*/
+    .aa{
+        transition: all 0.5s;
+    }
+    .go{
+        transform:rotate(180deg);
+        transition: all 0.5s;
+    }
+    /*---------------图片旋转--------------------*/
+}

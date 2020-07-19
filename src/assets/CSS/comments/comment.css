@@ -1,0 +1,145 @@
+.container {
+  margin: 5% auto;
+}
+.container .el-row:nth-of-type(1) {
+  margin-bottom: 5%;
+}
+.container .el-row:nth-of-type(2) {
+  margin-bottom: 5%;
+}
+.container .el-row:nth-of-type(2) .inputt {
+  font-size: 18px;
+}
+.container .el-row:nth-of-type(2) .comment_btn {
+  display: flex;
+  justify-content: flex-end;
+}
+.container .el-row:nth-of-type(3) .comment_title {
+  margin-bottom: 5%;
+}
+.container .el-row:nth-of-type(3) ul {
+  padding: 0;
+}
+.container .el-row:nth-of-type(3) .heighter {
+  height: auto !important;
+}
+.container .el-row:nth-of-type(3) li {
+  padding: 2% 0;
+  overflow: hidden;
+  list-style: none;
+  width: 100%;
+  border-bottom: 1px dashed #999;
+  line-height: 35px;
+  font-size: 12px;
+  transition: all 0.2s;
+  position: relative;
+}
+.container .el-row:nth-of-type(3) li .comment_content {
+  display: flex;
+}
+.container .el-row:nth-of-type(3) li .comment_content .comment_img {
+  flex: 1;
+}
+.container .el-row:nth-of-type(3) li .comment_content .comment_img img {
+  display: block;
+}
+.container .el-row:nth-of-type(3) li .comment_content .inner_comment {
+  flex: 9;
+  /*回复内容*/
+}
+.container .el-row:nth-of-type(3) li .comment_content .inner_comment .inner_comment_title {
+  display: flex;
+  justify-content: space-between;
+  font-size: 17px;
+}
+.container .el-row:nth-of-type(3) li .comment_content .inner_comment .btnGroup {
+  display: flex;
+}
+.container .el-row:nth-of-type(3) li .comment_content .inner_comment .btnGroup span {
+  display: flex;
+  width: 40px;
+  justify-content: center;
+  height: 30px;
+  cursor: pointer;
+  line-height: 30px;
+  font-size: 15px;
+  border: 0;
+  border-radius: 5px;
+}
+.container .el-row:nth-of-type(3) li .comment_content .inner_comment .btnGroup span:hover {
+  background-color: #ccc;
+  color: cornflowerblue;
+}
+.container .el-row:nth-of-type(3) li .comment_content .inner_comment .btnGroup .reComment {
+  display: flex;
+  margin: 0 10%;
+}
+.container .el-row:nth-of-type(3) li .comment_content .inner_comment .btnGroup .deletebtn {
+  display: flex;
+}
+.container .el-row:nth-of-type(3) li .comment_content .inner_comment .reCommentContent {
+  margin: 1% 0;
+}
+.container .el-row:nth-of-type(3) li .comment_content .inner_comment .commentShow {
+  margin-top: 2%;
+  display: flex;
+}
+.container .el-row:nth-of-type(3) li .comment_content .inner_comment .commentShow img {
+  display: block;
+}
+.container .el-row:nth-of-type(3) li .comment_content .inner_comment .reCommentContent {
+  font-size: 17px;
+}
+.container .el-row:nth-of-type(3) li .comment_content .inner_comment .reCommentContent > span:nth-of-type(1) {
+  color: pink;
+}
+.container .el-row:nth-of-type(3) li .comment_content .inner_comment .reCommentContent > span:nth-of-type(3) {
+  color: orange;
+}
+.container .el-row:nth-of-type(3) .v-enter,
+.container .el-row:nth-of-type(3) .v-leave-to {
+  opacity: 0;
+  transform: translateY(200px);
+}
+.container .el-row:nth-of-type(3) .v-enter-active,
+.container .el-row:nth-of-type(3) .v-leave-active {
+  transition: all 0.6s ease;
+}
+.container .el-row:nth-of-type(3) .v-mode {
+  transition: all 0.6s ease;
+}
+.container .el-row:nth-of-type(3) .v-leave-active {
+  position: absolute;
+}
+@media screen and (min-width: 1200px) {
+  .container {
+    width: 1000px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .container {
+    width: 930px;
+    margin: 5% auto;
+  }
+}
+@media screen and (max-width: 930px) {
+  .container {
+    width: 767px;
+    margin: 5% auto;
+  }
+}
+@media screen and (max-width: 767px) {
+  .container {
+    width: 90%;
+  }
+  .container .comment_content {
+    display: block !important;
+  }
+  .container .comment_content .comment_img {
+    display: flex;
+    justify-content: center;
+  }
+  .container .comment_content .comment_img img {
+    display: block;
+  }
+}

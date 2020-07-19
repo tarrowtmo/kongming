@@ -1,0 +1,37 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "577348",
+      "name": "留言",
+      "font_class": "liuyan",
+      "unicode": "e744",
+      "unicode_decimal": 59204
+    },
+    {
+      "icon_id": "721659",
+      "name": "代码",
+      "font_class": "ai-code",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "1506638",
+      "name": "文档",
+      "font_class": "wendang",
+      "unicode": "e66b",
+      "unicode_decimal": 58987
+    },
+    {
+      "icon_id": "6500752",
+      "name": "箭头",
+      "font_class": "jiantou",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    }
+  ]
+}

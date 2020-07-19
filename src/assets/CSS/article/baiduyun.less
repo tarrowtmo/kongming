@@ -1,0 +1,80 @@
+.main{
+    overflow: hidden;
+}
+// li高亮显示
+.highlight{
+    color: #ff7f21;
+}
+img {
+    display: block;
+}
+.container{
+    margin: 5% auto;
+    .title {
+        padding: 0;
+        list-style: none;
+       li {
+            cursor: pointer;
+            &:hover{
+                color: #ff7f21;
+            }
+            float: left;
+        } 
+    }
+    .title::after{
+        display: block;
+        content: '';
+        clear: both;
+    }
+    /*设置箭头链接的位置*/
+    .jiantou{
+        position: relative;
+        left: 80%;
+        a{
+            text-decoration: none;
+            span{
+                font-size: 30px;
+            }
+            
+        }
+    }
+    /*设置每行间隔*/
+    .animationRow{
+        margin-bottom: 2%;
+    }
+}
+@media screen and (min-width: 1200px) {
+    .container{
+        width: 1000px;
+    }
+    .animationRow{
+        .el-col:nth-child(1){
+            height: 300px;
+        }
+    }
+}
+@media screen and (max-width: 1200px) {
+    .container{
+        width: 930px;
+    }
+    .animationRow{
+        .el-col:nth-child(1){
+            height: 230px;
+        }
+    }
+}
+@media screen and (max-width: 930px) {
+    .container{
+        width: 767px;
+    }
+    .animationRow{
+        .el-col:nth-child(1){
+            height: 150px;
+        }
+    }
+}
+@media screen and (max-width: 767px) {
+    .container{
+        width: 90%;
+    }
+}
