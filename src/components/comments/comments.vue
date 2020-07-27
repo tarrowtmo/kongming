@@ -70,9 +70,9 @@
                       </span>
                       <span>{{item02.user}}</span>
                       <span>&nbsp;回复&nbsp;</span>
-                      <span>
+                      <!-- <span>
                         <img :src="item02.reUserImg" />
-                      </span>
+                      </span> -->
                       <span>@{{item02.recommentuser}}</span>
                     </div>
                     <div class="re_content">
@@ -84,15 +84,6 @@
                     <!-- <span @click="deleteComment(item.id)">删除</span> -->
                   </div>
                 </div>
-                <!-- <el-pagination
-                  background
-                  @current-change="handleCurrentChange2($event,index,item.content)"
-                  :current-page="index === number ? number : 1"
-                  :page-size="pageSize2"
-                  :pagerCount="5"
-                  layout="total, prev, pager, next, jumper"
-                  :total="5"
-                ></el-pagination>-->
                 <!-- 回复内容 -->
                 <div class="commentShow" v-show="index === indeXXX">
                   <!-- <img src="../../assets/Imgs/user.png" /> -->

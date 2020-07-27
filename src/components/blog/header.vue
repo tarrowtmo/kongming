@@ -97,7 +97,6 @@ export default {
       // 判断是否是手机端
       if (this._isMobile()) {
       } else {
-        // console.log(document.documentElement.clientWidth)
         const timer = setInterval(() => {
           // 当导航栏长度超过767时改变菜单图片
           if (this.$refs.el_row.$el.offsetWidth > 767) {

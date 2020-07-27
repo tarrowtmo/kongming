@@ -79,18 +79,18 @@ router.post("/comment", function (req, res, next) {
   let sqlStr = 'select * from comment order by time desc';
   connection.query("insert into comment(time,comments,id, username, userImg) values('" + time + "','" + comment + "','" + listId + "','" + username + "','" + userImg + "')", function (err, rows) {
     if (err) {
-      res.send("新增失败" + err);
+      throw err
     } else {
       connection.query(sqlStr, function (error, results) {
         if (err) {
-          res.send("查询失败" + err);
+          throw err
         } else {
           let total = results.length;
           let n = (currentPage - 1) * pageSize;
           sqlStr += ` limit ${n}, ${pageSize}`;
           connection.query(sqlStr, function (error, data) {
             if (err) {
-              res.send("查询失败" + err);
+              throw err
             } else {
               res.json({
                 total,
@@ -155,15 +155,15 @@ router.post("/reComment", function (req, res, next) {
   let sqlStr = 'select * from reComment order by time desc';
   connection.query("insert into reComment(Id,comments,time,user, recommentuser, userImg, reUserImg) values('" + listId + "','" + comment + "','" + time + "','" + user + "','" + recommentuser + "','" + userImg + "','" + reUserImg + "')", function (err, rows) {
     if (err) {
-      res.send("新增失败" + err);
+      throw err
     } else {
       connection.query(sqlStr, function (error, results) {
         if (err) {
-          res.send("查询失败" + err);
+          throw err
         } else {
           connection.query(sqlStr, function (error, data) {
             if (err) {
-              res.send("查询失败" + err);
+              throw err
             } else {
               res.send({
                 data
@@ -199,13 +199,25 @@ router.get("/noteCard", (req, res) => {
     }
   })
 })
+// 添加分享
+router.post("/noteCard", (req, res) => {
+  let { title, introduction, time, tag, link } = req.body.params
+  connection.query("insert into tech(name,title, text, time, src) values('" + tag + "','" + title + "','" + introduction + "','" + time + "','" + link + "')", function (err, data) {
+    if (err)
+      throw err
+    else {
+      console.log(data)
+      res.send(data)
+    }
+  })
+})
 /*----------------------------------   注册相关            ----------------------------------------------------*/
 // 注册
 router.post('/postForm', (req, res) => {
   let { user, email, password, gender, date, dialogImageUrl } = req.body.params
   connection.query("insert into userinfo(user,email, password, gender, date,userImg) values('" + user + "','" + email + "','" + password + "','" + gender + "','" + date + "','" + dialogImageUrl + "')", function (err, data) {
     if (err)
-      console.log('有错')
+      throw err
     else {
       console.log(data)
       res.send(data)

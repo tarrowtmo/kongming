@@ -33,10 +33,14 @@ import {
   CollapseItem,
   Link,
   Tag,
-  Upload
+  Upload,
+  Option,
+  Select
 } from 'element-ui'
 Vue.prototype.$message = Message
 Vue.prototype.$prompt = MessageBox.prompt
+Vue.use(Select)
+Vue.use(Option)
 Vue.use(Upload)
 Vue.use(Tag)
 Vue.use(Link)

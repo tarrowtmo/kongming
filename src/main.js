@@ -8,20 +8,32 @@ import VueResource from 'vue-resource'
 import store from './vuex/store'
 import axios from 'axios'
 import router from './router'
+import echarts from 'echarts'
+// 导入NProgress 包对应的JS和CSS
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 /*  -----------------基础全局配置------------------------------  */
-// axios.defaults.baseURL = 'http://localhost:8083'
+axios.defaults.baseURL = 'http://localhost:8083'
 /*  -----------------------------------------------  */
-// axios.interceptors.request.use(config => {
-//   console.log(config)
-//   config.headers.Authorization = window.sessionStorage.getItem('token')
-//   return config
-// })
+// 在request拦截器中,展示进度条NProgress.start()
+axios.interceptors.request.use(config => {
+  NProgress.start()
+  // console.log(config)
+  // config.headers.Authorization = window.sessionStorage.getItem('token')
+  return config
+})
+// 在response拦截器中,隐藏进度条NProgress.done()
+axios.interceptors.response.use(config => {
+  NProgress.done()
+  return config
+})
 Vue.use(VueResource)
 Vue.config.productionTip = false
 Vue.prototype.axios = axios
+Vue.prototype.$echarts = echarts
 
 // 全局过滤器
-Vue.filter('dataformat', function (originVal) {
+Vue.filter('dataformat', function(originVal) {
   const dt = new Date(originVal)
   const y = dt.getFullYear()
   /* padstart()用于头部补全
