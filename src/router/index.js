@@ -1,18 +1,33 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../components/home.vue'
-import Header from '../components/blog/header.vue'
-import Note from '../components/notes/note.vue'
-import Baidu from '../components/article/baiduyun.vue'
-import Comments from '../components/comments/comments.vue'
-import Album from '../components/album/album.vue'
-import About from '../components/about/about.vue'
-import Login from '../components/login.vue'
-import Register from '../components/register.vue'
-import Forget from '../components/forget/forget.vue'
-import ForgetSon from '../components/forget/forgetSon.vue'
-import ForgetGrandSon from '../components/forget/forgetGrandSon.vue'
 import store from '../vuex/store'
+const Home = () => import(/* webpackChunkName: "Home_Note" */ '../components/home.vue')
+const Note = () => import(/* webpackChunkName: "Home_Note" */ '../components/notes/note.vue')
+
+const Login = () => import(/* webpackChunkName: "Login_Register" */ '../components/login.vue')
+const Register = () => import(/* webpackChunkName: "Login_Register" */ '../components/register.vue')
+
+const Forget = () => import(/* webpackChunkName: "Forget_ForgetSon_ForgetGrandSon" */ '../components/forget/forget.vue')
+const ForgetSon = () => import(/* webpackChunkName: "Forget_ForgetSon_ForgetGrandSon" */ '../components/forget/forgetSon.vue')
+const ForgetGrandSon = () => import(/* webpackChunkName: "Forget_ForgetSon_ForgetGrandSon" */ '../components/forget/forgetGrandSon.vue')
+
+const Header = () => import(/* webpackChunkName: "Header_Baidu_Comments_Album_About" */ '../components/blog/header.vue')
+const Baidu = () => import(/* webpackChunkName: "Header_Baidu_Comments_Album_About" */ '../components/article/baiduyun.vue')
+const Comments = () => import(/* webpackChunkName: "Header_Baidu_Comments_Album_About" */ '../components/comments/comments.vue')
+const Album = () => import(/* webpackChunkName: "Header_Baidu_Comments_Album_About" */ '../components/album/album.vue')
+const About = () => import(/* webpackChunkName: "Header_Baidu_Comments_Album_About" */ '../components/about/about.vue')
+// import Home from '../components/home.vue'
+// import Header from '../components/blog/header.vue'
+// import Note from '../components/notes/note.vue'
+// import Baidu from '../components/article/baiduyun.vue'
+// import Comments from '../components/comments/comments.vue'
+// import Album from '../components/album/album.vue'
+// import About from '../components/about/about.vue'
+// import Login from '../components/login.vue'
+// import Register from '../components/register.vue'
+// import Forget from '../components/forget/forget.vue'
+// import ForgetSon from '../components/forget/forgetSon.vue'
+// import ForgetGrandSon from '../components/forget/forgetGrandSon.vue'
 
 Vue.use(VueRouter)
 

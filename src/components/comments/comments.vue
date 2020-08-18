@@ -278,7 +278,7 @@ export default {
       // 收集当前页码 和 每页显示条数
       const pageSize = this.pageSize
       const currentPage = this.currentPage
-      this.axios
+      return this.axios
         .get('api/comment', {
           params: {
             pageSize,
@@ -297,7 +297,7 @@ export default {
     },
     // 获取回复表单
     getReList() {
-      this.axios.get('api/reComment').then(results => {
+      return this.axios.get('api/reComment').then(results => {
         const { data } = results.data
         this.reList = data
         this.reList.forEach(item => {
@@ -376,6 +376,12 @@ export default {
     async getAllData() {
       await this.getList()
       await this.getReList()
+      // new Promise((resolve, reject) => {
+      //   this.getList()
+      //   resolve()
+      // }).then(res => {
+      //   this.getReList()
+      // })
     }
   },
   computed: {
