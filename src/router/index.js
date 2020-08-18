@@ -78,8 +78,6 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  // mode: 'history',
-  // base: '/www/wwwroot/tarrowtmo.cn',
   routes
 })
 /*  ------------------ 路由重复 -----------------------------  */

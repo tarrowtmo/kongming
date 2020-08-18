@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
-import './plugins/element.js'
-// 导入全局样式表
+// import './plugins/element.js'
 import 'element-ui/lib/theme-chalk/display.css'
+// 导入全局样式表
 import './assets/CSS/global.css'
 import VueResource from 'vue-resource'
 import store from './vuex/store'
