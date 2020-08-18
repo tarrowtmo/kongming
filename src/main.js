@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import './plugins/element.js'
+// import './plugins/element.js'
 // 导入全局样式表
 import 'element-ui/lib/theme-chalk/display.css'
 import './assets/CSS/global.css'
