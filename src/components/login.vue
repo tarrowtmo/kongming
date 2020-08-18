@@ -32,7 +32,7 @@
       </el-form>
     </div>
     <div class="footer">
-      <span style="cursor:pointer">忘记密码</span>
+      <span style="cursor:pointer" @click="forget">忘记密码</span>
       <strong>|</strong>
       <span style="cursor:pointer" @click="toRegis">注册账号</span>
     </div>
@@ -66,14 +66,12 @@ export default {
           }
         })
         if (res.status !== 200) {
-          console.log(res.status)
           return this.$message.error('登录失败')
         } else {
           if (res.data.data.length === 0) {
             this.reset()
             return this.$message.error('账号或密码有误,请重新输入')
           } else {
-            console.log(res)
             this.updatetoken(res.data.token)
             this.updateInformation(res.data.infomation.user)
             this.updateUserImg(res.body.data[0].userImg)
@@ -86,6 +84,10 @@ export default {
     // 前往注册
     toRegis() {
       this.$router.push('/register')
+    },
+    // 忘记密码
+    forget() {
+      this.$router.push('/forget')
     },
     // 重置
     reset() {

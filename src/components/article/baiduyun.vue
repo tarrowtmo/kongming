@@ -5,13 +5,8 @@
       <el-row>
         <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
           <ul class="title">
-            <li
-              v-for="(item, index) in list"
-              :key="index"
-              :class="{ highlight: id === index }"
-              @click="changeRouter(index + 1)"
-            >
-              <span>{{item.text}}</span>
+            <li>
+              <span class="highlight">CSS动画</span>
             </li>
           </ul>
         </el-col>
@@ -20,7 +15,7 @@
         <el-card class="animationRow" v-for="(item, index) in content" :key="index">
           <el-row :gutter="50">
             <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-              <img style="width:100%;height:100%;display:block;" :src="item.imgsrc" />
+              <img style="width:100%;height:100%;display:block;"  v-lazy="item.imgsrc"/>
             </el-col>
             <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
               <h1>{{item.headertext}}</h1>
@@ -72,7 +67,6 @@ export default {
   name: 'word',
   data() {
     return {
-      list: [{ text: 'CSS动画分享' }],
       // 控制li高亮
       id: 0,
       // 获取到的内容
@@ -80,13 +74,10 @@ export default {
       // 获取用户列表的参数对象
       currentPage: 1, // 当前页
       total: 0, // 数据总条数
-      pageSize: 2 // 每页条数
+      pageSize: 5 // 每页条数
     }
   },
   methods: {
-    changeRouter(index) {
-      this.id = index - 1
-    },
     // 分页
     getAccountListByPage() {
       // 收集当前页码 和 每页显示条数
@@ -100,8 +91,6 @@ export default {
           }
         })
         .then(response => {
-          // console.log('对应页码的数据:', response.data)
-          // 接收后端返回的数据总条数 total 和 对应页码的数据 data
           const { total, data } = response.data
           // 赋值给对应的变量即可
           this.total = total

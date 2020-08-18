@@ -12,6 +12,15 @@ import echarts from 'echarts'
 // 导入NProgress 包对应的JS和CSS
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
+// 懒加载
+import VueLazyload from 'vue-lazyload'
+
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  error: require('./assets/Imgs/tomcat.jpg'),
+  loading: require('./assets/Imgs/loading.gif'),
+  attempt: 1
+})
 /*  -----------------基础全局配置------------------------------  */
 axios.defaults.baseURL = 'http://localhost:8083'
 /*  -----------------------------------------------  */

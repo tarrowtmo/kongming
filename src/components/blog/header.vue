@@ -2,8 +2,13 @@
   <div class="container">
     <el-row ref="el_row">
       <el-col>
-        <img id="back1" src="../../assets/Imgs/fgo2.png" title="退出" />
-        <img id="back2" src="../../assets/Imgs/logoout3.png" @click="logout" title="退出" />
+        <img id="back1" :src="head_Img" title="退出" />
+        <img
+          id="back2"
+          src="../../assets/Imgs/logoout3.png"
+          @click="logout"
+          title="退出"
+        />
       </el-col>
       <el-col class="hidden-xs-only">
         <ul>
@@ -12,25 +17,42 @@
             :key="index"
             :class="{ highlight: id === index }"
             @click="changeRouter(index + 1)"
-          >{{item.word}}</li>
+          >
+            {{ item.word }}
+          </li>
         </ul>
       </el-col>
       <el-col style="float:right">
         <div class="hidden-xs-only">欢迎来到Tarrowtmo的博客~</div>
-        <img :class="[flag?'go':'aa']" @click="rotate" style="display:none" :src="flag2" />
+        <img
+          :class="[flag ? 'go' : 'aa']"
+          @click="rotate"
+          style="display:none"
+          :src="flag2"
+        />
       </el-col>
     </el-row>
     <ul class="ul2" v-show="flag">
-      <li v-for="(item, index) in list" :key="index" @click="changeRouter(index + 1)">{{item.word}}</li>
+      <li
+        v-for="(item, index) in list"
+        :key="index"
+        @click="changeRouter(index + 1)"
+      >
+        {{ item.word }}
+      </li>
     </ul>
     <router-view></router-view>
-    <div ref="el_div" :class="[flagg ? 'appear' : 'backTop']" @click="backToTop">
+    <div
+      ref="el_div"
+      :class="[flagg ? 'appear' : 'backTop']"
+      @click="backToTop"
+    >
       <img src="../../assets/Imgs/up.png" />
     </div>
   </div>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 export default {
   name: 'word',
   data() {
@@ -51,7 +73,9 @@ export default {
       // 回到顶部所绑定的类
       flagg: false,
       // 进度条长度
-      scrollLength: 0
+      scrollLength: 0,
+      // 头像
+      head_Img: ''
     }
   },
   methods: {
@@ -93,7 +117,6 @@ export default {
       } else if (this.flag === false) {
         this.flag2 = require('../../assets/Imgs/menu.png')
       }
-      console.log(this.flag)
       // 判断是否是手机端
       if (this._isMobile()) {
       } else {
@@ -142,14 +165,20 @@ export default {
     logout() {
       // window.sessionStorage.removeItem('token')
       // window.sessionStorage.clear()
+      // 删除token,个人信息,头像
       this.removeToken()
       this.removeInformation()
+      this.removeUserImg()
       this.$router.push('/login')
     },
-    ...mapActions(['removeToken', 'removeInformation'])
+    ...mapActions(['removeToken', 'removeInformation', 'removeUserImg'])
+  },
+  computed: {
+    ...mapState(['userImg'])
   },
   mounted() {
     window.addEventListener('scroll', this.scrollToTop)
+    this.head_Img = require('../../../server/routes/uploads/' + this.userImg)
     this.flag2 = require('../../assets/Imgs/menu.png')
   },
   destroyed() {

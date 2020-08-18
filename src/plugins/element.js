@@ -35,10 +35,14 @@ import {
   Tag,
   Upload,
   Option,
-  Select
+  Select,
+  Step,
+  Steps
 } from 'element-ui'
 Vue.prototype.$message = Message
 Vue.prototype.$prompt = MessageBox.prompt
+Vue.use(Steps)
+Vue.use(Step)
 Vue.use(Select)
 Vue.use(Option)
 Vue.use(Upload)

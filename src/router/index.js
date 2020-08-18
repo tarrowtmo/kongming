@@ -9,6 +9,10 @@ import Album from '../components/album/album.vue'
 import About from '../components/about/about.vue'
 import Login from '../components/login.vue'
 import Register from '../components/register.vue'
+import Forget from '../components/forget/forget.vue'
+import ForgetSon from '../components/forget/forgetSon.vue'
+import ForgetGrandSon from '../components/forget/forgetGrandSon.vue'
+import store from '../vuex/store'
 
 Vue.use(VueRouter)
 
@@ -28,6 +32,21 @@ const routes = [
   {
     path: '/register',
     component: Register
+  },
+  {
+    path: '/forget',
+    component: Forget,
+    redirect: '/ForgetSon',
+    children: [
+      {
+        path: '/ForgetSon',
+        component: ForgetSon
+      },
+      {
+        path: '/ForgetGrandSon',
+        component: ForgetGrandSon
+      }
+    ]
   },
   {
     path: '/header',
@@ -63,9 +82,18 @@ const router = new VueRouter({
   // base: '/www/wwwroot/tarrowtmo.cn',
   routes
 })
+/*  ------------------ 路由重复 -----------------------------  */
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 // 挂载路由导航守卫
 router.beforeEach((to, from, next) => {
-  if (to.path === '/login' || to.path === '/register') return next()
+  if (to.path === '/ForgetGrandSon') {
+    if (store.state.formUser === '') return next('/ForgetSon')
+    else return next()
+  }
+  if (to.path === '/login' || to.path === '/register' || to.path === '/forget' || to.path === '/ForgetSon') return next()
   const tokenstr = window.sessionStorage.getItem('token')
   if (!tokenstr) {
     return next('/login')

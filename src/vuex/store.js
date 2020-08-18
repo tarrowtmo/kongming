@@ -7,7 +7,9 @@ const store = new Vuex.Store({
     token: sessionStorage.getItem('token') || '',
     // information: JSON.parse(sessionStorage.getItem('information')) || {}
     information: sessionStorage.getItem('userInfo') || '',
-    userImg: sessionStorage.getItem('userImg') || ''
+    userImg: sessionStorage.getItem('userImg') || '',
+    actived: (sessionStorage.getItem('actived') - 0) || 0,
+    formUser: sessionStorage.getItem('formUser') || ''
   },
   mutations: {
     // 保存token
@@ -24,6 +26,29 @@ const store = new Vuex.Store({
     setUserImg(state, userImg) {
       sessionStorage.setItem('userImg', userImg)
       state.userImg = userImg
+    },
+    // 保存steps的actived
+    setActived(state, actived) {
+      sessionStorage.setItem('actived', actived)
+      if (actived > 2) {
+        actived = 0
+      }
+      state.actived = actived
+    },
+    // 保存需要更改的用户
+    setFormUser(state, formUser) {
+      sessionStorage.setItem('formUser', formUser)
+      state.formUser = formUser
+    },
+    // 删除steps的计数
+    deleteActived(state) {
+      sessionStorage.removeItem('actived')
+      state.actived = 0
+    },
+    // 删除需要更改的用户
+    deleteFormUser(state) {
+      sessionStorage.removeItem('formUser')
+      state.formUser = ''
     },
     // 删除token
     deleteToken(state) {
@@ -51,6 +76,10 @@ const store = new Vuex.Store({
     updateUserImg(context, value) {
       context.commit('setUserImg', value)
     },
+    // 更新actived
+    updataActived(context, value) {
+      context.commit('setActived', value)
+    },
     removeToken(context) {
       context.commit('deleteToken')
     },
@@ -59,6 +88,13 @@ const store = new Vuex.Store({
     },
     removeUserImg(context) {
       context.commit('deleteUserImg')
+    },
+    // 删除需要更改的用户
+    removeActived(context) {
+      context.commit('deleteActived')
+    },
+    removeFormUser(context) {
+      context.commit('deleteFormUser')
     }
   }
 })

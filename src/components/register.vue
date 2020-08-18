@@ -1,17 +1,33 @@
 <template>
   <div class="main_body">
     <div class="header_title">
-      <h2>创建账户</h2>
+      <!-- <h2>创建账户</h2> -->
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item style="font-size: 20px;" :to="{ path: '/login' }"
+          >登录</el-breadcrumb-item
+        >
+        <el-breadcrumb-item style="font-size: 20px;"
+          >创建账户</el-breadcrumb-item
+        >
+      </el-breadcrumb>
     </div>
     <div class="contaienr">
       <el-form :model="registerForm" :rules="rules" ref="registerRef">
         <!-- 账号 -->
         <el-form-item label="用户名" prop="user">
-          <el-input placeholder="请输入账户" prefix-icon="el-icon-user" v-model="registerForm.user"></el-input>
+          <el-input
+            placeholder="请输入账户"
+            prefix-icon="el-icon-user"
+            v-model="registerForm.user"
+          ></el-input>
         </el-form-item>
         <!-- 邮箱 -->
         <el-form-item label="邮箱" prop="email">
-          <el-input placeholder="请输入邮箱" prefix-icon="el-icon-edit" v-model="registerForm.email"></el-input>
+          <el-input
+            placeholder="请输入邮箱"
+            prefix-icon="el-icon-edit"
+            v-model="registerForm.email"
+          ></el-input>
         </el-form-item>
         <!-- 密码 -->
         <el-form-item label="密码" prop="password">
@@ -24,14 +40,20 @@
         </el-form-item>
         <!-- 性别 -->
         <el-form-item label="性别" prop="gender">
-          <el-radio-group v-model="registerForm.gender" @change="change_Selection">
+          <el-radio-group
+            v-model="registerForm.gender"
+          >
             <el-radio label="男"></el-radio>
             <el-radio label="女"></el-radio>
           </el-radio-group>
         </el-form-item>
         <!-- 出生年月日 -->
         <el-form-item label="出生日期:" prop="date">
-          <el-date-picker type="date" placeholder="选择出生年月" v-model="registerForm.date"></el-date-picker>
+          <el-date-picker
+            type="date"
+            placeholder="选择出生年月"
+            v-model="registerForm.date"
+          ></el-date-picker>
         </el-form-item>
         <!-- 上传头像 -->
         <el-form-item label="头像:" prop="dialogImageUrl">
@@ -41,6 +63,7 @@
             method="post"
             ref="upload"
             list-type="picture-card"
+            :limit="1"
             :on-success="afterUpload"
             :on-change="changeurl"
             :on-preview="handlePictureCardPreview"
@@ -48,7 +71,7 @@
             :on-remove="handleRemove"
             :auto-upload="false"
           >
-            <i class="el-icon-camera-solid"></i>
+            <i class="el-icon-upload"></i>
           </el-upload>
           <el-dialog :visible.sync="dialogVisible">
             <img width="100%" :src="dialogImageUrl2" />
@@ -56,7 +79,9 @@
         </el-form-item>
         <!-- 注册按钮 -->
         <el-form-item>
-          <button type="button" class="login_button" @click="submit">注册</button>
+          <button type="button" class="login_button" @click="submit">
+            注册
+          </button>
         </el-form-item>
       </el-form>
     </div>
@@ -117,17 +142,14 @@ export default {
       },
       // 图片上传组件
       dialogVisible: false,
-      dialogImageUrl2: ''
+      dialogImageUrl2: '',
+      // 图片上传是否不可用
+      cantBeUploaded: false
     }
   },
   methods: {
-    change_Selection(val) {
-      console.log(this.registerForm.date)
-    },
     // 注册
     submit() {
-      // 提交图片
-      this.$refs.upload.submit()
       // 表单预验证
       this.$refs.registerRef.validate(async valid => {
         if (!valid) return false
@@ -146,9 +168,10 @@ export default {
           }
         })
         .then(res => {
-          console.log(res)
           if (res.data.length === 0) {
             this.canBeRegist = true
+            // 提交图片
+            this.$refs.upload.submit()
             console.log('可以注册情况下' + this.canBeRegist)
           } else {
             this.canBeRegist = false
@@ -181,13 +204,12 @@ export default {
               console.log(data.status)
               return this.$message.error('提交失败')
             } else {
-              // 提交图片
-              // this.$refs.upload.submit()
               this.$router.push('/login')
               this.$message.success('恭喜，注册成功')
             }
           } else if (res === false) {
             this.$refs.registerRef.resetFields()
+            this.$refs.upload.clearFiles()
             return this.$message.error('该邮箱或用户名已被注册')
           }
         })
@@ -210,11 +232,18 @@ export default {
     afterUpload(res, file) {
       // this.registerForm.dialogImageUrl = res.file.url
       console.log(res)
+      return this.$message.success('上传成功')
     },
     changeurl(file, fileList) {
       // this.registerForm.dialogImageUrl =
       //   '../../../server/routes/uploads/' + file.name
       this.registerForm.dialogImageUrl = file.name
+      console.log(file.name)
+      if (file.name !== '' && file.name) {
+        this.cantBeUploaded = true
+      } else {
+        this.cantBeUploaded = false
+      }
       // console.log(file)
     },
     // 上传之前

@@ -73,7 +73,6 @@ export default {
     getList() {
       this.axios.get('api/list').then(res => {
         this.noteText = res.data
-        console.log(this.noteText)
       })
     },
     bigImg(src) {

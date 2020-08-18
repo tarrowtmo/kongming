@@ -169,7 +169,7 @@ export default {
             inverse: true,
             show: true,
             type: 'category',
-            data: ['JQuery', 'Vue', 'Node-ui', 'Element-UI', 'E-Charts'],
+            data: ['JQuery', 'Vue', 'Node', 'Element-UI', 'React'],
             axisLine: {
               show: false
             },
@@ -201,7 +201,7 @@ export default {
           {
             name: '条',
             type: 'bar',
-            data: [80, 95, 80, 97, 89],
+            data: [80, 95, 80, 97, 80],
             // 柱子之间的距离
             barCategoryGap: 50,
             // 柱子的宽度

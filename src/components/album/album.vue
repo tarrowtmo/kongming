@@ -287,7 +287,6 @@ export default {
           }
         })
         if (data.status !== 200) {
-          console.log(data.status)
           return this.$message.error('提交失败')
         } else {
           this.$message.success('添加成功')

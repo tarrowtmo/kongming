@@ -2,12 +2,19 @@
   <div class="container">
     <el-row>
       <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-        <img style="display:block;width:100%;height:100%;" src="../../assets/Imgs/liuyan.jpg" />
+        <img
+          style="display:block;width:100%;height:100%;"
+          src="../../assets/Imgs/liuyan.jpg"
+        />
       </el-col>
     </el-row>
     <el-row>
       <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-        <el-form :model="formtext" ref="commentFormRef" :rules="commentFormRules">
+        <el-form
+          :model="formtext"
+          ref="commentFormRef"
+          :rules="commentFormRules"
+        >
           <el-form-item prop="text">
             <el-input
               class="inputt"
@@ -29,29 +36,28 @@
       <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
         <div class="comment_title">
           <span>全部留言</span>
-          <span>{{total}}</span>
+          <span>{{ total }}</span>
         </div>
         <transition-Group appear tag="ul">
           <li
-            :style="index === indeHeight ? heighter : height"
-            ref="li"
-            v-for="(item,index) in list"
+            v-for="(item, index) in list"
             :key="index"
+            :style="index === indeHeight ? heighter : height"
+            ref="comment"
           >
             <div class="comment_content">
               <!-- 头像 -->
               <div class="comment_img">
-                <!-- <img src="../../assets/Imgs/user.png" /> -->
                 <img :src="item.userImg" />
               </div>
               <div class="inner_comment">
                 <!-- 用户名 -->
                 <div class="inner_comment_title">
-                  <span>{{item.username}}</span>
-                  <span>{{item.time | dataformat}}</span>
+                  <span>{{ item.username }}</span>
+                  <span>{{ item.time | dataformat }}</span>
                 </div>
                 <!-- 发言内容 -->
-                <div style="font-size:18px;">{{item.comments}}</div>
+                <div style="font-size:18px;">{{ item.comments }}</div>
                 <!-- 按钮组 -->
                 <div class="btnGroup">
                   <span @click="letCommentShow(index)">回复</span>
@@ -60,7 +66,7 @@
                 <!-- 回复留言 -->
                 <div
                   class="reCommentContent"
-                  v-for="(item02,index02) in item.content"
+                  v-for="(item02, index02) in item.content"
                   :key="index02"
                 >
                   <div>
@@ -68,25 +74,20 @@
                       <span>
                         <img :src="item02.userImg" />
                       </span>
-                      <span>{{item02.user}}</span>
+                      <span>{{ item02.user }}</span>
                       <span>&nbsp;回复&nbsp;</span>
-                      <!-- <span>
-                        <img :src="item02.reUserImg" />
-                      </span> -->
-                      <span>@{{item02.recommentuser}}</span>
+                      <span>@{{ item02.recommentuser }}</span>
                     </div>
                     <div class="re_content">
-                      <span>{{item02.comments}}</span>
+                      <span>{{ item02.comments }}</span>
                     </div>
                   </div>
                   <div class="btnGroup">
-                    <span @click="letCommentShow2(index,index02)">回复</span>
-                    <!-- <span @click="deleteComment(item.id)">删除</span> -->
+                    <span @click="letCommentShow2(index, index02)">回复</span>
                   </div>
                 </div>
                 <!-- 回复内容 -->
                 <div class="commentShow" v-show="index === indeXXX">
-                  <!-- <img src="../../assets/Imgs/user.png" /> -->
                   <img :src="reCommenImg" />
                   <el-input
                     type="textarea"
@@ -100,11 +101,15 @@
                 </div>
               </div>
             </div>
+            <!-- :style="index === indeHeight ? ifShow : ''" -->
             <button
               @click="beHeighter(index)"
-              :style="index === indeHeight ? ifShow : ''"
+              v-show="index !== indeHeight"
               style="position:absolute;right:0;bottom:0;"
-            >查看更多</button>
+            >
+              查看更多
+            </button>
+            <div class="li_footer"></div>
           </li>
         </transition-Group>
         <el-pagination
@@ -122,7 +127,7 @@
   </div>
 </template>
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState } from 'vuex'
 export default {
   name: 'word',
   data() {
@@ -160,14 +165,14 @@ export default {
       uniCode: '',
       // li变高
       heighter: {
-        height: '300px'
+        height: 'auto'
       },
       height: {
         'max-height': '300px'
       },
-      ifShow: {
-        display: 'none'
-      },
+      // ifShow: {
+      //   display: 'none'
+      // },
       indeHeight: NaN
       // pageSize2: 2, // 每页显示
       // number: 0, // 判断点击是哪个分页
@@ -197,6 +202,7 @@ export default {
         const username = this.information
         const userImg = this.userImg
         const comment = this.formtext.text
+        const ip = localStorage.getItem('Ip')
         const data = await this.$http.post('api/comment', {
           params: {
             time,
@@ -205,16 +211,17 @@ export default {
             currentPage,
             listId,
             username,
-            userImg
+            userImg,
+            ip
           }
         })
         if (data.status !== 200) {
-          console.log(data.status)
           return this.$message.error('发表失败')
         } else {
           this.reset()
-          this.getList()
-          this.getReList()
+          // this.getList()
+          // this.getReList()
+          this.getAllData()
           this.indeXXX = -1
         }
       })
@@ -231,6 +238,7 @@ export default {
         const recommentuser = this.recommentuser
         const reUserImg = this.reUserImg
         const userImg = this.userImg
+        const ip = localStorage.getItem('Ip')
         const data = await this.$http.post('api/reComment', {
           params: {
             time,
@@ -239,11 +247,12 @@ export default {
             user,
             recommentuser,
             reUserImg,
-            userImg
+            userImg,
+            ip
           }
         })
         if (data.status !== 200) {
-          console.log(data.status)
+          return this.$message.error('失败')
         } else {
           this.reComments = ''
           if (this.list.length > 0) {
@@ -251,7 +260,9 @@ export default {
               this.list[i].content = []
             }
           }
-          this.getReList()
+          // this.getList()
+          // this.getReList()
+          this.getAllData()
           this.indeXXX = -1
         }
       } else {
@@ -320,8 +331,9 @@ export default {
             message: '删除成功'
           })
           this.axios.get(`api/comment/${id}`).then(results => {})
-          this.getList()
-          this.getReList()
+          // this.getList()
+          // this.getReList()
+          this.getAllData()
           this.indeXXX = -1
         })
         .catch(() => {
@@ -352,24 +364,28 @@ export default {
       // 保存当前页码
       this.currentPage = val
       // 调用分页函数
-      this.getList()
-      this.getReList()
+      // this.getList()
+      // this.getReList()
+      this.getAllData()
     },
     // 变高
     beHeighter(index) {
       this.indeHeight = index
-      this.heighter.height = 'auto'
     },
-    ...mapActions(['updateUserImg'])
+    // 异步获取数据改为同步
+    async getAllData() {
+      await this.getList()
+      await this.getReList()
+    }
   },
   computed: {
     ...mapState(['information', 'userImg'])
   },
   mounted() {
     this.reCommenImg = require('../../../server/routes/uploads/' + this.userImg)
-    console.log(this.reCommenImg)
-    this.getList()
-    this.getReList()
+    // this.getList()
+    // this.getReList()
+    this.getAllData()
   }
 }
 </script>
