@@ -22,13 +22,12 @@ Vue.use(VueLazyload, {
   attempt: 1
 })
 /*  -----------------基础全局配置------------------------------  */
-axios.defaults.baseURL = 'http://localhost:8083'
+// axios.defaults.baseURL = 'http://localhost:8083'
+// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 /*  -----------------------------------------------  */
 // 在request拦截器中,展示进度条NProgress.start()
 axios.interceptors.request.use(config => {
   NProgress.start()
-  // console.log(config)
-  // config.headers.Authorization = window.sessionStorage.getItem('token')
   return config
 })
 // 在response拦截器中,隐藏进度条NProgress.done()

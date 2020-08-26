@@ -61,7 +61,11 @@
                 <!-- 按钮组 -->
                 <div class="btnGroup">
                   <span @click="letCommentShow(index)">回复</span>
-                  <span @click="deleteComment(item.id)">删除</span>
+                  <span
+                    v-if="information === '鲁孔明'"
+                    @click="deleteComment(item.id)"
+                    >删除</span
+                  >
                 </div>
                 <!-- 回复留言 -->
                 <div
@@ -260,8 +264,6 @@ export default {
               this.list[i].content = []
             }
           }
-          // this.getList()
-          // this.getReList()
           this.getAllData()
           this.indeXXX = -1
         }
