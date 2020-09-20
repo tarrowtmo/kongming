@@ -29,11 +29,12 @@
 //   }
 // }
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
+  // publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
   devServer: {
     open: true, // 是否自动弹出浏览器页面
     https: false,
     hotOnly: false,
+    port: 8083,
     proxy: {
       '/api': {
         target: 'http://api.tarrowtmo.cn', // API服务器的地址

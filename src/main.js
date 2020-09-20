@@ -1,10 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 // import './plugins/element.js'
-<<<<<<< HEAD
 // 导入全局样式表
-=======
->>>>>>> 1a70a68e9e17a8f35d688a8ed6ea636b9f969f20
 import 'element-ui/lib/theme-chalk/display.css'
 // 导入全局样式表
 import './assets/CSS/global.css'
@@ -26,7 +23,8 @@ Vue.use(VueLazyload, {
   attempt: 1
 })
 /*  -----------------基础全局配置------------------------------  */
-// axios.defaults.baseURL = 'http://localhost:8083'
+// axios.defaults.baseURL = 'http://api.tarrowtmo.cn/'
+// axios.defaults.baseURL = 'http://localhost:8083/index/'
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 /*  -----------------------------------------------  */
 // 在request拦截器中,展示进度条NProgress.start()
