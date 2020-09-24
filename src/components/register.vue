@@ -40,9 +40,7 @@
         </el-form-item>
         <!-- 性别 -->
         <el-form-item label="性别" prop="gender">
-          <el-radio-group
-            v-model="registerForm.gender"
-          >
+          <el-radio-group v-model="registerForm.gender">
             <el-radio label="男"></el-radio>
             <el-radio label="女"></el-radio>
           </el-radio-group>
@@ -201,10 +199,16 @@ export default {
             })
             console.log(data)
             if (data.status !== 200) {
+              // this.$router.push('/login')
+              // console.log(data.status)
+              // this.$message.success('恭喜，注册成功')
               console.log(data.status)
               return this.$message.error('提交失败')
             } else {
+              // console.log(data.status)
+              // return this.$message.error('提交失败')
               this.$router.push('/login')
+              console.log(this.cantBeUploaded)
               this.$message.success('恭喜，注册成功')
             }
           } else if (res === false) {
@@ -238,12 +242,21 @@ export default {
       // this.registerForm.dialogImageUrl =
       //   '../../../server/routes/uploads/' + file.name
       this.registerForm.dialogImageUrl = file.name
-      console.log(file.name)
+      console.log('图片名称为:' + file.name)
+      const isLt2M = file.size / 1024 / 1024 < 2
       if (file.name !== '' && file.name) {
         this.cantBeUploaded = true
       } else {
         this.cantBeUploaded = false
       }
+      if (!isLt2M) {
+        this.cantBeUploaded = false
+        this.registerForm.dialogImageUrl = ''
+        fileList.splice(0, 1)
+        console.log('之前', this.cantBeUploaded)
+        return this.$message.error('上传头像图片大小不能超过 2MB!')
+      }
+      console.log('改变', this.cantBeUploaded)
       // console.log(file)
     },
     // 上传之前
@@ -252,10 +265,15 @@ export default {
       const isLt2M = file.size / 1024 / 1024 < 2
 
       if (!isJPG) {
-        this.$message.error('上传头像图片只能是 JPG 或 PNG格式!')
+        this.cantBeUploaded = false
+        // this.registerForm.dialogImageUrl = ''
+        return this.$message.error('上传头像图片只能是 JPG 或 PNG格式!')
       }
       if (!isLt2M) {
-        this.$message.error('上传头像图片大小不能超过 2MB!')
+        this.cantBeUploaded = false
+        // this.registerForm.dialogImageUrl = ''
+        console.log('之前', this.cantBeUploaded)
+        return this.$message.error('上传头像图片大小不能超过 2MB!')
       }
       return isJPG && isLt2M
     }
