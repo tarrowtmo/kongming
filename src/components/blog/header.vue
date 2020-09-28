@@ -178,7 +178,8 @@ export default {
   },
   mounted() {
     window.addEventListener('scroll', this.scrollToTop)
-    this.head_Img = require('../../../server/routes/uploads/' + this.userImg)
+    // this.head_Img = require('../../../server/routes/uploads/' + this.userImg)
+    this.head_Img = 'http://tarrowtmo.cn/mineImg/' + this.userImg
     this.flag2 = require('../../assets/Imgs/menu.png')
   },
   destroyed() {

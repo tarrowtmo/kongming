@@ -5,9 +5,12 @@ let bodyParser = require('body-parser')
 let jwt = require('jsonwebtoken')
 let fs = require('fs')
 let app = express()
+const path = require('path')
 // 上传图片相关
 const multer = require('multer')
-const upload = multer({ dest: __dirname + '/uploads' })
+const imgPath = path.join(__dirname, '../../tarrowtmo.cn/mineImg')
+// const upload = multer({ dest: __dirname + '/uploads' })
+const upload = multer({ dest: imgPath })
 // 上传图片相关
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -347,16 +350,14 @@ router.post('/login', (req, res) => {
 /*----------------------------------   上传图片相关            ----------------------------------------------------*/
 router.post('/upload', upload.single('file'), (req, res) => {
   let file = req.file
-  var oldPath = file.destination + '\\' + file.filename
-  var newPath = file.destination + '\\' + file.originalname
-  console.log(newPath)
-  fs.rename(oldPath, newPath, function(err) {
+  // var oldPath = file.destination + '\/' + file.filename
+  var newPath = file.destination + '\/' + file.originalname
+  fs.rename(file.path, newPath, function(err) {
     if (err) {
       throw err
     }
-    console.log('成功')
+    console.log(newPath)
   })
-  // file.url = `http://localhost:8083/server/public/images/${file.originalname}`
   res.send({ file, newPath })
 })
 
@@ -376,7 +377,8 @@ router.get('/forget', (req, res) => {
     }
   )
 })
-/*---------------------------------------  修改密码 ----------------------------------------------------*/ 
+/*---------------------------------------  修改密码 ----------------------------------------------------*/
+
 router.get('/changePassword', (req, res) => {
   let { password, username } = req.query
   let sql = `UPDATE userinfo SET password = '${password}' WHERE user='${username}'`

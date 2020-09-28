@@ -292,8 +292,9 @@ export default {
           this.total = total
           this.list = data
           this.list.forEach(item => {
-            item.userImg = require('../../../server/routes/uploads/' +
-              item.userImg)
+            // item.userImg = require('../../../server/routes/uploads/' +
+            //   item.userImg)
+            item.userImg = 'http://tarrowtmo.cn/mineImg/' + item.userImg
           })
         })
     },
@@ -303,8 +304,9 @@ export default {
         const { data } = results.data
         this.reList = data
         this.reList.forEach(item => {
-          item.userImg = require('../../../server/routes/uploads/' +
-            item.userImg)
+          // item.userImg = require('../../../server/routes/uploads/' +
+          //   item.userImg)
+          item.userImg = 'http://tarrowtmo.cn/mineImg/' + item.userImg
         })
         for (let i = 0; i < this.list.length; i++) {
           for (let j = 0; j < this.reList.length; j++) {
@@ -390,7 +392,8 @@ export default {
     ...mapState(['information', 'userImg'])
   },
   mounted() {
-    this.reCommenImg = require('../../../server/routes/uploads/' + this.userImg)
+    // this.reCommenImg = require('../../../server/routes/uploads/' + this.userImg)
+    this.reCommenImg = 'http://tarrowtmo.cn/mineImg/' + this.userImg
     // this.getList()
     // this.getReList()
     this.getAllData()

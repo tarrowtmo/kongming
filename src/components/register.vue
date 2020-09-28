@@ -140,9 +140,7 @@ export default {
       },
       // 图片上传组件
       dialogVisible: false,
-      dialogImageUrl2: '',
-      // 图片上传是否不可用
-      cantBeUploaded: false
+      dialogImageUrl2: ''
     }
   },
   methods: {
@@ -208,7 +206,6 @@ export default {
               // console.log(data.status)
               // return this.$message.error('提交失败')
               this.$router.push('/login')
-              console.log(this.cantBeUploaded)
               this.$message.success('恭喜，注册成功')
             }
           } else if (res === false) {
@@ -244,19 +241,11 @@ export default {
       this.registerForm.dialogImageUrl = file.name
       console.log('图片名称为:' + file.name)
       const isLt2M = file.size / 1024 / 1024 < 2
-      if (file.name !== '' && file.name) {
-        this.cantBeUploaded = true
-      } else {
-        this.cantBeUploaded = false
-      }
       if (!isLt2M) {
-        this.cantBeUploaded = false
         this.registerForm.dialogImageUrl = ''
         fileList.splice(0, 1)
-        console.log('之前', this.cantBeUploaded)
         return this.$message.error('上传头像图片大小不能超过 2MB!')
       }
-      console.log('改变', this.cantBeUploaded)
       // console.log(file)
     },
     // 上传之前
@@ -265,14 +254,11 @@ export default {
       const isLt2M = file.size / 1024 / 1024 < 2
 
       if (!isJPG) {
-        this.cantBeUploaded = false
         // this.registerForm.dialogImageUrl = ''
         return this.$message.error('上传头像图片只能是 JPG 或 PNG格式!')
       }
       if (!isLt2M) {
-        this.cantBeUploaded = false
         // this.registerForm.dialogImageUrl = ''
-        console.log('之前', this.cantBeUploaded)
         return this.$message.error('上传头像图片大小不能超过 2MB!')
       }
       return isJPG && isLt2M
