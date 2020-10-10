@@ -16,10 +16,15 @@ const config = {
 export default {
   name: 'app',
   created() {
-    this.$nextTick(() => {
-      const cn = new CanvasNest(document.querySelector('.container'), config)
-      console.log(cn)
-    })
+    const fmobile = navigator.userAgent.match(
+      /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
+    )
+    if (!fmobile) {
+      this.$nextTick(() => {
+        /* eslint-disable no-new */
+        new CanvasNest(document.querySelector('.container'), config)
+      })
+    }
   }
 }
 </script>

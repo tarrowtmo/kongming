@@ -166,11 +166,21 @@ export default {
       rules: {
         title: [
           { required: true, message: '请输入标题', trigger: 'blur' },
-          { min: 1, max: 255, message: '长度在 1 到 10 个字符', trigger: 'blur' }
+          {
+            min: 1,
+            max: 255,
+            message: '长度在 1 到 10 个字符',
+            trigger: 'blur'
+          }
         ],
         introduction: [
           { required: true, message: '请输入简介', trigger: 'blur' },
-          { min: 1, max: 255, message: '长度在 1 到 10 个字符', trigger: 'blur' }
+          {
+            min: 1,
+            max: 255,
+            message: '长度在 1 到 10 个字符',
+            trigger: 'blur'
+          }
         ],
         link: [{ required: true, message: '请输入链接', trigger: 'blur' }],
         tag: [{ required: true, message: '请输入标签', trigger: 'change' }]
@@ -253,7 +263,11 @@ export default {
     addContent() {
       if (this._isMobile()) {
         this.widthh = '100%'
-      } else this.widthh = '70%'
+        console.log('是手机')
+      } else {
+        this.widthh = '70%'
+        console.log('不是手机')
+      }
       this.dialogVisible = true
     },
     _isMobile() {
