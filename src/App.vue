@@ -19,11 +19,15 @@ export default {
     const fmobile = navigator.userAgent.match(
       /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
     )
+    // if (!fmobile) {
+    //   this.$nextTick(() => {
+    //     /* eslint-disable no-new */
+    //     new CanvasNest(document.querySelector('.container'), config)
+    //   })
+    // }
     if (!fmobile) {
-      this.$nextTick(() => {
-        /* eslint-disable no-new */
-        new CanvasNest(document.querySelector('.container'), config)
-      })
+      /* eslint-disable no-new */
+      new CanvasNest(document.querySelector('.container'), config)
     }
   }
 }

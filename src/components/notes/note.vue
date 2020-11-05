@@ -27,17 +27,22 @@
               <el-main>
                 <el-container class="innerContainerXX">
                   <el-main>
-                    <h1>{{innerItem.textHead}}</h1>
-                    <div>{{innerItem.textBody}}</div>
+                    <h1>{{ innerItem.textHead }}</h1>
+                    <div>{{ innerItem.textBody }}</div>
                   </el-main>
                   <el-aside class="innerContainerXX_asider">
-                    <img @click="bigImg(innerItem.imgSrc)" :src="innerItem.imgSrc" />
+                    <img
+                      @click="bigImg(innerItem.imgSrc)"
+                      :src="innerItem.imgSrc"
+                    />
                   </el-aside>
                 </el-container>
               </el-main>
               <el-aside class="innerContainer_asider">
                 <div class="innerContainer_asider_div">
-                  <a download="02" :href="innerItem.fileSrc">点击下载完整笔记</a>
+                  <a download="02" :href="innerItem.fileSrc"
+                    >点击下载完整笔记</a
+                  >
                 </div>
               </el-aside>
             </el-container>
@@ -46,12 +51,11 @@
       </el-card>
     </el-main>
     <el-dialog title="图片预览" :visible.sync="dialogVisible" width="60%">
-      <img style="width:100%;height:100%" :src="fileSrc"/>
+      <img style="width:100%;height:100%" :src="fileSrc" />
     </el-dialog>
   </el-container>
 </template>
 <script>
-// import noteText from '../../assets/JS/note_content.js'
 export default {
   name: 'word',
   data() {

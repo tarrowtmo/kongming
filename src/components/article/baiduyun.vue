@@ -13,7 +13,7 @@
       </el-row>
       <el-row :gutter="10">
         <el-card class="animationRow" v-for="(item, index) in content" :key="index">
-          <el-row :gutter="50">
+          <el-row :gutter="40">
             <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
               <img style="width:100%;height:100%;display:block;"  v-lazy="item.imgsrc"/>
             </el-col>
@@ -22,7 +22,7 @@
               <span>{{item.text}}</span>
               <div class="jiantou">
                 <a :href="item.linksrc">
-                  <span slot="reference" class="iconfont icon-jiantou"></span>
+                  <span>-></span>
                 </a>
               </div>
             </el-col>

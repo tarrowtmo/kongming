@@ -4,7 +4,7 @@ let connection = require('../db/sql.js')
 let bodyParser = require('body-parser')
 let jwt = require('jsonwebtoken')
 let fs = require('fs')
-let app = express()
+const app = express()
 const path = require('path')
 // 上传图片相关
 const multer = require('multer')
@@ -14,6 +14,20 @@ const upload = multer({ dest: imgPath })
 // 上传图片相关
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+/* cors跨域 */
+// app.use(require('cors')())
+// app.all('*', function(req, res, next) {
+//   res.header('Access-Control-Allow-Origin', '*')
+//   res.header(
+//     'Access-Control-Allow-Headers',
+//     'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild'
+//   )
+//   res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS')
+//   res.header('X-Powered-By', ' 3.2.1')
+//   res.header('Content-Type', 'application/json;charset=utf-8')
+//   next()
+// })
+// app.use(cors())
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' })
@@ -351,7 +365,7 @@ router.post('/login', (req, res) => {
 router.post('/upload', upload.single('file'), (req, res) => {
   let file = req.file
   // var oldPath = file.destination + '\/' + file.filename
-  var newPath = file.destination + '\/' + file.originalname
+  var newPath = file.destination + '/' + file.originalname
   fs.rename(file.path, newPath, function(err) {
     if (err) {
       throw err

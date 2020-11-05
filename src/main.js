@@ -15,6 +15,8 @@ import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 // 懒加载
 import VueLazyload from 'vue-lazyload'
+// 引入Markdown样式
+import 'github-markdown-css'
 
 Vue.use(VueLazyload, {
   preLoad: 1.3,

@@ -1,0 +1,72 @@
+.main {
+  overflow: hidden;
+}
+.highlight {
+  color: #ff7f21;
+}
+img {
+  display: block;
+}
+.container {
+  margin: 5% auto;
+  /*设置箭头链接的位置*/
+  /*设置每行间隔*/
+}
+.container .title {
+  padding: 0;
+  list-style: none;
+}
+.container .title li {
+  cursor: pointer;
+  float: left;
+}
+.container .title li:hover {
+  color: #ff7f21;
+}
+.container .title::after {
+  display: block;
+  content: '';
+  clear: both;
+}
+.container .jiantou {
+  position: relative;
+  left: 80%;
+}
+.container .jiantou a {
+  text-decoration: none;
+}
+.container .jiantou a span {
+  font-size: 30px;
+}
+.container .animationRow {
+  margin-bottom: 2%;
+}
+@media screen and (min-width: 1200px) {
+  .container {
+    width: 1000px;
+  }
+  .animationRow .el-col:nth-child(1) {
+    height: 300px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .container {
+    width: 930px;
+  }
+  .animationRow .el-col:nth-child(1) {
+    height: 230px;
+  }
+}
+@media screen and (max-width: 930px) {
+  .container {
+    width: 767px;
+  }
+  .animationRow .el-col:nth-child(1) {
+    height: 150px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .container {
+    width: 90%;
+  }
+}
